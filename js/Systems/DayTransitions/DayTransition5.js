@@ -1,0 +1,51 @@
+var trPOP;
+
+var DayTransition5= function(game){
+console.log("THIS IS THE DAY TRANSITION SCRENE");
+}
+
+DayTransition5.prototype.preload=function(){
+
+}
+
+DayTransition5.prototype.create=function(){
+ 	game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
+	//var	sfx=game.audio.add("Pop");
+	trPOP=game.add.audio("Pop");
+}
+
+DayTransition5.prototype.style1= { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+DayTransition5.prototype.style2={ font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+
+
+DayTransition5.prototype.update=function(){
+
+if(this.counter==1){
+	console.log("SHOW THE DATE TEXT!!!");
+    var text1 = game.add.text(game.world.centerX, (game.world.centerY/2), "Day 5", this.style1);
+        text1.anchor.setTo(.5,.5);
+}
+
+if(this.counter==2){
+	var text2 = game.add.text((game.world.centerX),(game.world.centerY), "May 1, 1997", this.style2);
+	    text2.anchor.setTo(.5,.5); 
+}
+
+if(this.counter==3){
+	console.log("SHOW THE START TEXT");
+	this.counter=0;
+	game.state.start("DayFive");
+}
+
+}
+
+DayTransition5.prototype.render=function(){
+
+}
+
+DayTransition5.prototype.counter=0;
+
+DayTransition5.prototype.updateCounter=function(){
+	this.counter++;
+	trPOP.play();
+}
